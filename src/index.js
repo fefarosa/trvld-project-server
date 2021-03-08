@@ -9,7 +9,6 @@ const cors = require("cors");
 require("dotenv").config();
 
 const middlewares = require("./middlewares");
-const logs = require("./api/logs.js");
 
 const app = express();
 
@@ -27,7 +26,10 @@ app.use(
 );
 app.use(express.json());
 
-app.use("/location", logs);
+// Router
+const logs = require("./routes/post.routes.js");
+
+app.use("/", logs);
 
 // Error handlers middlewares :)
 app.use(middlewares.notFound);
