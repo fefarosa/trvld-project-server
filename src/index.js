@@ -5,6 +5,7 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
+const passport = require("./config/passport.config");
 
 require("dotenv").config();
 
@@ -16,6 +17,7 @@ const app = express();
 const db = require("./config/db.config");
 
 db();
+passport(app);
 
 app.use(morgan("common"));
 app.use(helmet());
@@ -28,8 +30,11 @@ app.use(express.json());
 
 // Router
 const logs = require("./routes/post.routes.js");
+const user = require("./routes/user.routes.js");
+
 
 app.use("/", logs);
+app.use("/", user);
 
 // Error handlers middlewares :)
 app.use(middlewares.notFound);
