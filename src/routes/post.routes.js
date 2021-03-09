@@ -9,6 +9,19 @@ const router = express.Router();
 
 const LogEntry = require("../models/LogEntry");
 
+//Importando o multer para fazer o upload pro Cloudinary
+const uploader = require('../config/cloudinary.config');
+
+
+//Rota para upload de imagens 
+router.post('/upload', uploader.single('picture'), (req,res) => {
+  if(!req.file) {
+    return res.status(500).json({msg: 'no file uploader'})
+  }
+  return res.status(200).json({fileUrl: req.file.path})
+})
+
+
 // Crud: create post
 router.post("/post", async (req, res) => {
   try {
