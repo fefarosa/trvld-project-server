@@ -12,12 +12,6 @@ const logEntrySchema = new Schema(
     },
     image: String,
     description: String,
-    rating: {
-      type: Number,
-      min: 0,
-      max: 5,
-      default: 0,
-    },
     startDate: {
       type: Date,
       required: true,
