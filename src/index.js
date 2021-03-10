@@ -28,10 +28,9 @@ app.use(
 );
 app.use(express.json());
 
-// Router
+// Routers
 const logs = require("./routes/post.routes.js");
 const user = require("./routes/user.routes.js");
-
 
 app.use("/", logs);
 app.use("/", user);

@@ -23,11 +23,11 @@ router.post("/signup", async (req, res) => {
   const errors = {};
 
   if (!name || typeof name !== "string" || name.length > 50) {
-    errors.name = "Username is required and should be 50 characters max.";
+    errors.name = "username is required and should be 50 characters max.";
   }
 
   if (!email || !email.match(/[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+/)) {
-    errors.email = "Email is required and should be a valid email address";
+    errors.email = "email is required and should be a valid email address.";
   }
 
   if (
@@ -37,7 +37,7 @@ router.post("/signup", async (req, res) => {
     )
   ) {
     errors.password =
-      "Password is required, should be at least 8 characters long, should contain an uppercase letter, lowercase letter, a number and a special character";
+      "password is required, should be at least 8 characters long, should contain an uppercase letter, lowercase letter, a number and a special character.";
   }
 
   if (Object.keys(errors).length) {
@@ -63,7 +63,7 @@ router.post("/signup", async (req, res) => {
     } else if (err.code === 11000) {
       res.status(400).json({
         error:
-          "Name and email need to be unique. Either username or email is already used.",
+          "name and email need to be unique. either username or email is already used.",
       });
     }
   }
