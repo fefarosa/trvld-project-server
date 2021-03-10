@@ -7,7 +7,7 @@ const mongoose = require("mongoose");
 
 function initializeDB() {
   mongoose
-    .connect(process.env.DATABASE_URL, {
+    .connect(`${process.env.MONGODB_URI}/travel-log`, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
