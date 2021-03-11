@@ -23,7 +23,7 @@ router.post('/upload', uploader.single('picture'), (req,res) => {
 
 
 // Crud: create post
-router.post("/post", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const logEntry = new LogEntry(req.body);
     const createdEntry = await logEntry.save();
