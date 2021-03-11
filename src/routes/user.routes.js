@@ -18,6 +18,7 @@ const User = require("../models/User");
 
 router.post("/signup", async (req, res) => {
   const { name, email, password } = req.body;
+  console.log(req.body);
 
   const errors = {};
 
