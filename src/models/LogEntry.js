@@ -12,7 +12,7 @@ const logEntrySchema = new Schema(
     },
     image: String,
     description: String,
-    visitDate: {
+    startDate: {
       type: Date,
     },
     latitude: {
