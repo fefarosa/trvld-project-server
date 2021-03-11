@@ -14,8 +14,10 @@ const app = express();
 
 // Database connection
 const db = require("./config/db.config");
+const passport = require("./config/passport.config") 
 
 db();
+passport(app);
 
 app.use(morgan("common"));
 app.use(helmet());
