@@ -4,15 +4,28 @@
 /* eslint-disable no-console */
 /* eslint-disable quotes */
 const express = require("express");
-
 const router = express.Router();
+const passport = require("passport");
+
+const uploader = require('../config/cloudinary.config');
 
 const LogEntry = require("../models/LogEntry");
 
+//Rota para upload de imagens 
+router.post('/upload', uploader.single('picture'), (req,res) => {
+  if(!req.file) {
+    return res.status(500).json({msg: 'no file uploader'})
+  }
+  return res.status(200).json({fileUrl: req.file.path})
+})
+
+
 // Crud: create post
-router.post("/", async (req, res) => {
+router.post("/", passport.authenticate("jwt", { session: false }),
+async (req, res) => {
   try {
-    const logEntry = new LogEntry(req.body);
+    const logEntry = await Pet.create({ ...req.body, userId: req.user._id });
+    // const logEntry = new LogEntry(req.body);
     const createdEntry = await logEntry.save();
 
     return res.status(201).json(createdEntry);
@@ -23,12 +36,13 @@ router.post("/", async (req, res) => {
 });
 
 // cRud: read all posts
-router.get("/", async (req, res, next) => {
+router.get("/", passport.authenticate("jwt", { session: false }),
+async (req, res) => {
   try {
-    const entries = await LogEntry.find();
-    res.json(entries);
-  } catch (err) {
-    next(err);
+    const entries = await LogEntry.find({ userId: req.user._id });
+    return res.status(200).json(entries);
+    } catch (err) {
+      return res.status(500).json({ msg: err });
   }
 });
 

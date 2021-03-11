@@ -2,9 +2,7 @@
 /* eslint-disable quotes */
 const mongoose = require("mongoose");
 
-const { Schema } = mongoose;
-
-const logEntrySchema = new Schema(
+const logEntrySchema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -27,6 +25,10 @@ const logEntrySchema = new Schema(
       max: 180,
       required: true,
     },
+    userId: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "User" 
+    }
   },
   {
     timestamps: true,
