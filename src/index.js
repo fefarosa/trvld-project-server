@@ -5,7 +5,6 @@ const express = require("express");
 const morgan = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
-const passport = require("./config/passport.config");
 
 require("dotenv").config();
 
@@ -15,6 +14,7 @@ const app = express();
 
 // Database connection
 const db = require("./config/db.config");
+const passport = require("./config/passport.config");
 
 db();
 passport(app);
