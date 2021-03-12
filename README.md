@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/Suellenhf/editor/main/Captura%20de%20Tela%202021-03-12%20a%CC%80s%2005.32.18.png?token=ASIUTIHBAQK4VPMRW2HVYM3AJMBGS)
+
 # Trip(pin)
 
  - Trip(pin) is a full stack web application with front-end built in React and back-end using Express and Mongoose technologies.
