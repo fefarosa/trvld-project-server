@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "trippin, a memory app",
   "main": "index.js",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
