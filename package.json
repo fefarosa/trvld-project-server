@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "trippin, a memory app",
   "main": "index.js",
   "scripts": {
     "start": "node src/index.js",
