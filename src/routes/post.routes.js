@@ -5,7 +5,7 @@
 /* eslint-disable quotes */
 const express = require("express");
 const router = express.Router();
-// const passport = require("passport");  ---> ADDED
+const passport = require("passport");
 
 const uploader = require('../config/cloudinary.config');
 
@@ -21,15 +21,12 @@ router.post('/upload', uploader.single('picture'), (req,res) => {
 
 
 // Crud: create post
-router.post("/",
-// , passport.authenticate("jwt", { session: false }),   ---> ADDED
+router.post("/", passport.authenticate("jwt", { session: false }),
 async (req, res) => {
   try {
-    // const logEntry = await Post.create({ ...req.body, userId: req.user._id });   ---> ADDED
-    const logEntry = new LogEntry(req.body);
-    const createdEntry = await logEntry.save();
-
-    return res.status(201).json(createdEntry);
+    const logEntry = await LogEntry.create({ ...req.body, userId: req.user._id });
+    
+    return res.status(201).json(logEntry);
   } catch (err) {
     console.error(err);
     return res.status(500).json({ msg: err });
@@ -37,12 +34,10 @@ async (req, res) => {
 });
 
 // cRud: read all posts
-router.get("/",
-// , passport.authenticate("jwt", { session: false }),   ---> ADDED
+router.get("/", passport.authenticate("jwt", { session: false }),
 async (req, res) => {
   try {
-    const entries = await LogEntry.find();
-      // { userId: req.user._id });  ---> ADDED
+    const entries = await LogEntry.find({ userId: req.user._id });
       res.json(entries);
     // return res.status(200).json(entries);
     } catch (err) {
