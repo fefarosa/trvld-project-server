@@ -25,10 +25,10 @@ const logEntrySchema = mongoose.Schema(
       max: 180,
       required: true,
     },
-    // userId: { 
-    //   type: mongoose.Schema.Types.ObjectId, 
-    //   ref: "User" 
-    // }
+    userId: { 
+      type: mongoose.Schema.Types.ObjectId, 
+      ref: "User" 
+    }
   },
   {
     timestamps: true,
